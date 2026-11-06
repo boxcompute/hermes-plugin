@@ -1,0 +1,22 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "boxcompute",
+  "version": "0.1.0",
+  "description": "Give Hermes its own Linux VMs on BoxCompute: run commands, edit files and share public preview URLs through the hosted BoxCompute MCP server, with a workflow skill bundled.",
+  "author": {
+    "name": "BoxCompute",
+    "url": "https://boxcompute.ai"
+  },
+  "homepage": "https://boxcompute.ai",
+  "repository": "https://github.com/boxcompute/hermes-plugin",
+  "license": "MIT",
+  "keywords": [
+    "boxcompute",
+    "sandbox",
+    "vm",
+    "linux",
+    "cloud",
+    "preview",
+    "mcp"
+  ]
+}
