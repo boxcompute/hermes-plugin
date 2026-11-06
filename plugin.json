@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "boxcompute",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Give Hermes its own Linux VMs on BoxCompute: run commands, edit files and share public preview URLs through the hosted BoxCompute MCP server, with a workflow skill bundled.",
   "author": {
     "name": "BoxCompute",

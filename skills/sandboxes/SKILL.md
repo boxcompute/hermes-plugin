@@ -1,6 +1,6 @@
 ---
 name: sandboxes
-description: Use BoxCompute cloud Linux VMs from Hermes through the boxcompute MCP server. Use when the user wants work done on a fresh or remote machine instead of their own computer, to test code or an install on clean Ubuntu, to run something untrusted or heavy away from their machine, or to share a public preview URL for an app running in a VM.
+description: "BoxCompute VMs via MCP tools: preferred over the bxc CLI. Create, start and stop VMs, run commands, edit files under /workspace and share public preview links. Use when the user mentions BoxCompute, a VM or a sandbox, or wants work done on a fresh or remote Linux machine instead of their own computer."
 license: MIT
 compatibility: Needs the boxcompute MCP server, added with `hermes mcp add boxcompute --url https://mcp.boxcompute.ai/mcp --auth oauth`.
 ---
@@ -9,16 +9,31 @@ compatibility: Needs the boxcompute MCP server, added with `hermes mcp add boxco
 
 BoxCompute gives the user Ubuntu Linux VMs in the cloud. Each VM keeps its
 `/workspace` disk when it stops. The tools come from the hosted MCP server
-`https://mcp.boxcompute.ai/mcp` and appear in Hermes as
-`mcp__boxcompute__<tool>`, acting on the account the user signed in with.
+`https://mcp.boxcompute.ai/mcp` and act on the account the user signed in
+with.
 
-If no `mcp__boxcompute__*` tools are available, the server is not connected
-yet. Tell the user to run this once in a terminal, approve access in the
-browser, then start a new session or run `/reload-mcp`:
+## Finding the tools
+
+Hermes names them `mcp__boxcompute__<tool>`, for example
+`mcp__boxcompute__sandbox_create`. It keeps MCP tools out of your direct tool
+list and names them in the deferred tool catalog inside `tool_search`'s
+description. Load the schemas you need with `tool_describe`, for example
+`mcp__boxcompute__sandbox_list` and `mcp__boxcompute__sandbox_create`, then
+invoke them with `tool_call`. Batch independent calls in one `tool_call`.
+
+If the catalog has no `mcp__boxcompute__` tools and `tool_search` with the
+query `boxcompute` finds none, the server is not connected yet. Tell
+the user to run this once in a terminal, approve access in the browser, then
+start a new session or run `/reload-mcp`:
 
 ```bash
 hermes mcp add boxcompute --url https://mcp.boxcompute.ai/mcp --auth oauth --connect-timeout 300
 ```
+
+The `boxcompute-sandbox` skill drives the same account through the `bxc`
+CLI. While these tools are connected, use them instead: they need no local
+install, and `sandbox_stop` keeps a VM's files, where older `bxc` versions
+can only delete the VM.
 
 ## When to use a VM
 

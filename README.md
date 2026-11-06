@@ -48,6 +48,15 @@ open one.
 On a server you reach over SSH, follow Hermes's
 [OAuth over SSH guide](https://hermes-agent.nousresearch.com/docs/guides/oauth-over-ssh#mcp-servers).
 
+### If you also use the bxc CLI
+
+`hermes import-agent` may have copied the CLI's `boxcompute-sandbox` skill
+into Hermes from Claude Code, Cursor or Codex. The plugin's skill tells Hermes
+to use the MCP tools while they are connected. If Hermes still reaches for
+`bxc`, update the CLI (`npm install -g @boxcompute/cli@latest`) so it can stop
+a VM instead of deleting it, or disable the imported copies with
+`hermes skills config`.
+
 ### Using an API key instead
 
 Create a key in the BoxCompute app under **Menu → API keys**, put it in your
@@ -112,8 +121,9 @@ mcp_servers:
 
 ## Tools
 
-Hermes names each tool `mcp__boxcompute__<tool>`. The server's own list is
-the source of truth.
+Hermes names each tool `mcp__boxcompute__<tool>`, for example
+`mcp__boxcompute__sandbox_create`. The server's own list is the source of
+truth.
 
 | Tool | What it does |
 | --- | --- |
